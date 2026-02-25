@@ -4,7 +4,8 @@ server.py — C365 CS Agent: FastAPI main application.
 Routes:
   GET  /                     → API info
   GET  /health               → Health check (services connectivity)
-  GET  /demo                 → 2-minute demo with mock data (no external calls required)
+  GET  /demo                 → Interactive demo dashboard (HTML)
+  GET  /api/demo             → Demo data as JSON (mock or live AI)
 
   GET  /tickets              → List Zendesk tickets
   GET  /tickets/{id}         → Get single ticket
@@ -27,9 +28,12 @@ import logging
 from datetime import datetime, timezone
 from typing import Any
 
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 import ai_engine
 import outlook_client
@@ -126,11 +130,16 @@ def health_check() -> HealthResponse:
 
 @app.get("/demo", response_model=DemoResponse, tags=["Demo"])
 def demo() -> DemoResponse:
-    """
-    2-minute demo endpoint. Uses real Claude AI with mock ticket/email data.
-    No Zendesk or Graph credentials required.
+    """Serve the interactive demo dashboard."""
+    static_dir = Path(__file__).parent / "static"
+    return FileResponse(static_dir / "index.html")
 
-    Perfect for screen-share demos showcasing C365 AI customer service capabilities.
+
+@app.get("/api/demo", response_model=DemoResponse, tags=["Demo"])
+def demo_api() -> DemoResponse:
+    """
+    JSON API for demo data. Uses real Claude AI with mock ticket/email data.
+    No Zendesk or Graph credentials required.
     """
     # Mock ticket: a frustrated client with a billing dispute
     mock_ticket = ZendeskTicket(
@@ -453,6 +462,13 @@ def customer_history(email: str) -> CustomerHistorySummary:
     except Exception as exc:
         logger.error("customer_history %s failed: %s", email, exc)
         raise HTTPException(status_code=502, detail=f"Error: {exc}")
+
+
+# ── Static Files ─────────────────────────────────────────────────────────────
+
+_static_dir = Path(__file__).parent / "static"
+if _static_dir.is_dir():
+    app.mount("/static", StaticFiles(directory=str(_static_dir)), name="static")
 
 
 # ── Entry point for local dev ─────────────────────────────────────────────────

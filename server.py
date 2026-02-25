@@ -187,25 +187,25 @@ def demo() -> DemoResponse:
     except Exception as exc:
         logger.warning("AI unavailable for demo, using mock results: %s", exc)
         classification = TicketClassification(
+            ticket_id=mock_ticket.id,
             priority=TicketPriority.high,
             category=TicketCategory.billing,
             sentiment=SentimentLabel.frustrated,
             confidence=0.95,
             summary="Client reports being overcharged $850 on November invoice. Second occurrence. Threatening to leave.",
-            escalate=True,
+            should_escalate=True,
             escalation_reason="Repeat billing error with flight risk language",
         )
         suggested_response = SuggestedResponse(
+            ticket_id=mock_ticket.id,
             subject="Re: Incorrect charge on my November invoice",
             body="Hi Marcus,\n\nThank you for bringing this to our attention. I sincerely apologize for the billing discrepancy — this should not have happened, especially a second time. I've flagged your account for immediate review and our billing team will issue a credit for the $850 overcharge within 24 hours. I'll personally follow up to ensure this is resolved and it doesn't happen again.\n\nBest regards,\nC365 Support",
-            tone="empathetic",
-            confidence=0.92,
+            suggested_status=TicketStatus.pending,
         )
         email_draft = SuggestedResponse(
             subject="Re: ERP integration inquiry — P21 to Salesforce",
             body="Hi Sarah,\n\nThank you for reaching out! Yes, we absolutely offer a discovery session before scoping — it's actually how we start every engagement. We have deep experience with P21 to Salesforce integrations, including automated data syncs.\n\nWould you be available for a 30-minute discovery call this week?\n\nBest regards,\nC365 Support",
-            tone="professional",
-            confidence=0.90,
+            suggested_status=TicketStatus.open,
         )
         demo_msg = "Demo running with mock AI results. Add ANTHROPIC_API_KEY for live Claude AI classification and responses."
 

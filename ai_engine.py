@@ -29,8 +29,13 @@ from models import (
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
-# Initialize Anthropic client once at module load
-_client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+# Initialize Anthropic client — may be None if no API key
+_client = None
+if settings.anthropic_api_key:
+    try:
+        _client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+    except Exception:
+        _client = None
 
 
 # ── Internal helpers ──────────────────────────────────────────────────────────
@@ -42,6 +47,8 @@ def _call_claude(
     max_tokens: int | None = None,
 ) -> str:
     """Low-level Claude call. Returns raw text content."""
+    if _client is None:
+        raise RuntimeError("Anthropic API key not configured")
     model = model or settings.claude_model_respond
     max_tokens = max_tokens or settings.claude_max_tokens
 

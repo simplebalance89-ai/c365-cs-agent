@@ -1,0 +1,64 @@
+# .dockerignore — C365 CS Agent
+# Keeps the Docker image lean and secrets out of the build context
+
+# Python cache / compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Secrets — NEVER bake into image
+.env
+.env.*
+*.env
+secrets/
+credentials/
+
+# Development tools
+.git/
+.gitignore
+.github/
+*.md
+!README.md
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+tests/
+test_*.py
+*_test.py
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Azure / deployment scripts (not needed inside container)
+azure-deploy.sh
+startup.sh
+deploy-instructions.md
+Dockerfile
+
+# Node (if any tooling exists)
+node_modules/
+npm-debug.log

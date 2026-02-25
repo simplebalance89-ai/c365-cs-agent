@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conveyance365 — AI Customer Service Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">
+        <div class="brand-logo">
+          <span class="brand-l">C</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">CONVEYANCE365</span>
+          <span class="brand-sub">AI Customer Service Agent</span>
+        </div>
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="status-bar">
+        <div class="stat-pill">
+          <span class="stat-pill-val" id="hdr-open">—</span>
+          <span class="stat-pill-label">Open</span>
+        </div>
+        <div class="stat-pill urgent">
+          <span class="stat-pill-val" id="hdr-urgent">—</span>
+          <span class="stat-pill-label">Urgent</span>
+        </div>
+        <div class="stat-pill success">
+          <span class="stat-pill-val" id="hdr-resolved">—</span>
+          <span class="stat-pill-label">Resolved Today</span>
+        </div>
+        <div class="stat-pill info">
+          <span class="stat-pill-val" id="hdr-csat">—</span>
+          <span class="stat-pill-label">CSAT</span>
+        </div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="connection-status" id="conn-status">
+        <span class="conn-dot" id="conn-dot"></span>
+        <span id="conn-label">Connecting…</span>
+      </div>
+      <label class="demo-toggle">
+        <input type="checkbox" id="demo-mode-toggle" />
+        <span class="toggle-slider"></span>
+        <span class="toggle-label">Demo Mode</span>
+      </label>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main class="layout">
+
+    <!-- LEFT: TICKET QUEUE -->
+    <aside class="panel panel-queue" id="panel-queue">
+      <div class="panel-header">
+        <h2 class="panel-title">Ticket Queue</h2>
+        <div class="queue-controls">
+          <button class="icon-btn" id="refresh-btn" title="Refresh">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          </button>
+          <select class="filter-select" id="priority-filter">
+            <option value="all">All Priorities</option>
+            <option value="urgent">Urgent</option>
+            <option value="high">High</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="search-bar">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Search tickets…" />
+      </div>
+      <div class="ticket-list" id="ticket-list">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <span>Loading tickets…</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER: TICKET DETAIL -->
+    <section class="panel panel-detail" id="panel-detail">
+      <div class="empty-state" id="empty-detail">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <p>Select a ticket to view details</p>
+        <span>AI-powered response suggestions will appear here</span>
+      </div>
+
+      <div class="ticket-detail" id="ticket-detail" style="display:none;">
+        <div class="detail-header">
+          <div class="detail-meta">
+            <span class="detail-id" id="detail-id">#0000</span>
+            <span class="priority-badge" id="detail-priority">Normal</span>
+            <span class="category-tag" id="detail-category">General</span>
+          </div>
+          <div class="detail-actions">
+            <button class="btn btn-ghost" id="btn-classify">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              Classify
+            </button>
+            <button class="btn btn-danger" id="btn-escalate">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Escalate
+            </button>
+          </div>
+        </div>
+
+        <h1 class="detail-subject" id="detail-subject">Loading…</h1>
+
+        <div class="detail-info-row">
+          <div class="detail-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span id="detail-requester">—</span>
+          </div>
+          <div class="detail-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span id="detail-created">—</span>
+          </div>
+          <div class="sentiment-badge" id="sentiment-badge">
+            <span class="sentiment-icon" id="sentiment-icon">😐</span>
+            <span id="sentiment-label">Neutral</span>
+          </div>
+        </div>
+
+        <!-- AI Summary -->
+        <div class="ai-summary" id="ai-summary">
+          <div class="ai-summary-header">
+            <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>AI Summary</span>
+          </div>
+          <p id="ai-summary-text">Analyzing ticket…</p>
+        </div>
+
+        <!-- Conversation Thread -->
+        <div class="conversation-section">
+          <h3 class="section-label">Conversation</h3>
+          <div class="conversation-thread" id="conversation-thread">
+          </div>
+        </div>
+
+        <!-- AI Response -->
+        <div class="response-section">
+          <div class="response-header">
+            <h3 class="section-label">
+              <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              AI-Suggested Response
+            </h3>
+            <button class="btn btn-ghost btn-sm" id="btn-regenerate">Regenerate</button>
+          </div>
+          <textarea class="response-textarea" id="response-textarea" placeholder="AI response will appear here…" rows="6"></textarea>
+          <div class="response-actions">
+            <span class="char-count" id="char-count">0 characters</span>
+            <div class="response-btns">
+              <button class="btn btn-ghost" id="btn-copy">Copy</button>
+              <button class="btn btn-primary" id="btn-send">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send Response
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: INSIGHTS -->
+    <aside class="panel panel-insights" id="panel-insights">
+      <div class="panel-header">
+        <h2 class="panel-title">Insights</h2>
+        <span class="date-label" id="today-label">Today</span>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <div class="stat-body">
+            <span class="stat-val" id="stat-received">—</span>
+            <span class="stat-lbl">Tickets Received</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="stat-body">
+            <span class="stat-val" id="stat-resolved-pct">—</span>
+            <span class="stat-lbl">Resolution Rate</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="stat-body">
+            <span class="stat-val" id="stat-response-time">—</span>
+            <span class="stat-lbl">Avg Response Time</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="stat-body">
+            <span class="stat-val" id="stat-csat">—</span>
+            <span class="stat-lbl">CSAT Score</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Classification Breakdown -->
+      <div class="insights-section">
+        <h3 class="section-label">AI Classification Breakdown</h3>
+        <div class="category-bars" id="category-bars">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Sentiment Overview -->
+      <div class="insights-section">
+        <h3 class="section-label">Sentiment Overview</h3>
+        <div class="sentiment-bar-row">
+          <div class="sentiment-segment positive" id="sent-positive" style="width:40%">
+            <span>Positive</span>
+            <strong id="sent-positive-pct">40%</strong>
+          </div>
+          <div class="sentiment-segment neutral" id="sent-neutral" style="width:35%">
+            <span>Neutral</span>
+            <strong id="sent-neutral-pct">35%</strong>
+          </div>
+          <div class="sentiment-segment negative" id="sent-negative" style="width:25%">
+            <span>Negative</span>
+            <strong id="sent-negative-pct">25%</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Feed -->
+      <div class="insights-section activity-section">
+        <h3 class="section-label">Recent Activity</h3>
+        <div class="activity-feed" id="activity-feed">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- AI Health -->
+      <div class="ai-health">
+        <div class="ai-health-header">
+          <svg class="ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>AI Agent Health</span>
+        </div>
+        <div class="health-metrics">
+          <div class="health-metric">
+            <span>Classification Accuracy</span>
+            <div class="health-bar-wrap">
+              <div class="health-bar" style="width: 94%"></div>
+            </div>
+            <strong>94%</strong>
+          </div>
+          <div class="health-metric">
+            <span>Response Quality</span>
+            <div class="health-bar-wrap">
+              <div class="health-bar accent-bar" style="width: 91%"></div>
+            </div>
+            <strong>91%</strong>
+          </div>
+          <div class="health-metric">
+            <span>Auto-Resolution Rate</span>
+            <div class="health-bar-wrap">
+              <div class="health-bar green-bar" style="width: 67%"></div>
+            </div>
+            <strong>67%</strong>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

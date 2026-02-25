@@ -112,6 +112,33 @@ POLICIES = {
                        "Emergency maintenance (HVAC, plumbing, electrical) is handled within 1 hour. "
                        "Non-emergency requests within 24 hours.",
     },
+    "orders": {
+        "order_tracking": "All orders receive a confirmation email with order number (LW-XXXXX) within "
+                         "1 hour of placement. Shipping confirmation with tracking number is sent when "
+                         "the order ships. Standard fulfillment is 5-7 business days.",
+        "shipping": "Standard shipping is included on orders over $200. Expedited shipping (2-3 business "
+                    "days) is available for an additional fee. Local delivery within our building is same-day "
+                    "for in-stock items.",
+        "order_changes": "Orders can be modified or cancelled within 24 hours of placement. After that, "
+                        "the order enters fulfillment and changes may not be possible. Contact support "
+                        "immediately for urgent modifications.",
+        "missing_orders": "If an order has not arrived within 10 business days of shipping confirmation, "
+                         "contact support. We will initiate a carrier investigation and, if unresolved "
+                         "within 48 hours, ship a replacement or issue a full refund.",
+    },
+    "warranty": {
+        "standard_warranty": "All Luxor Workspaces-provided furniture and equipment comes with a 12-month "
+                            "warranty covering manufacturing defects, mechanical failures, and component "
+                            "breakage under normal use. Warranty begins on delivery date.",
+        "warranty_claims": "To file a warranty claim, contact support with your order number, a description "
+                          "of the issue, and a photo if possible. Claims are processed within 2 business days. "
+                          "Approved claims receive a replacement or repair at no charge.",
+        "exclusions": "Warranty does not cover damage from misuse, unauthorized modifications, normal wear "
+                     "and tear, or cosmetic damage. Items purchased from third parties are covered by their "
+                     "respective manufacturer warranties.",
+        "extended_warranty": "Enterprise and private office members receive an extended 24-month warranty on "
+                           "all furnishings included in their office package.",
+    },
     "data_handling": {
         "security": "All member data is encrypted in transit (TLS 1.2+) and at rest (AES-256). "
                     "Building access is secured with key card entry and 24/7 security cameras.",
@@ -214,6 +241,30 @@ FAQ = [
              "upgrade their plan. Contact us for a custom quote for teams of 5+.",
     },
     {
+        "q": "Where is my order?",
+        "a": "You can check your order status in the member portal under Orders, or email "
+             "support@luxorworkspaces.com with your order number (LW-XXXXX). You'll receive tracking "
+             "information via email once your order ships. Standard fulfillment is 5-7 business days.",
+    },
+    {
+        "q": "How do I file a warranty claim?",
+        "a": "Contact support@luxorworkspaces.com with your order number, a description of the issue, "
+             "and a photo if possible. All Luxor-provided furniture and equipment has a 12-month warranty "
+             "(24 months for enterprise/private office members). Claims are processed within 2 business days.",
+    },
+    {
+        "q": "Can I return or exchange an item?",
+        "a": "Items can be returned within 30 days of delivery if unused and in original packaging. "
+             "Exchanges are processed at no additional shipping charge. Custom-ordered items are "
+             "non-returnable. Contact support to initiate a return or exchange.",
+    },
+    {
+        "q": "What does the warranty cover?",
+        "a": "Our 12-month standard warranty covers manufacturing defects, mechanical failures, and "
+             "component breakage under normal use. It does not cover misuse, unauthorized modifications, "
+             "or normal wear and tear. Enterprise members get an extended 24-month warranty.",
+    },
+    {
         "q": "How do I get started?",
         "a": "Visit our website at luxorworkspaces.com to book a tour, or email info@luxorworkspaces.com. "
              "You can also walk into any of our locations during business hours. We will help you find "
@@ -227,6 +278,8 @@ CONTACTS = {
     "support": "support@luxorworkspaces.com",
     "sales": "info@luxorworkspaces.com",
     "billing": "billing@luxorworkspaces.com",
+    "orders": "orders@luxorworkspaces.com",
+    "warranty": "warranty@luxorworkspaces.com",
     "management": "management@luxorworkspaces.com",
     "escalation": "management@luxorworkspaces.com",
 }

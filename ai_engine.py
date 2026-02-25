@@ -95,7 +95,7 @@ a valid JSON object — no commentary, no markdown, just JSON.
 
 Classification schema:
 {
-  "category": one of [billing, access, maintenance, booking, lease, amenities, general, escalation],
+  "category": one of [billing, access, maintenance, booking, lease, amenities, orders, warranty, general, escalation],
   "priority": one of [urgent, high, normal, low],
   "sentiment": one of [positive, neutral, frustrated, angry],
   "should_escalate": boolean,

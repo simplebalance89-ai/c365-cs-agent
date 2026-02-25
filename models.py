@@ -36,6 +36,8 @@ class TicketCategory(str, Enum):
     booking = "booking"
     lease = "lease"
     amenities = "amenities"
+    orders = "orders"
+    warranty = "warranty"
     general = "general"
     escalation = "escalation"
 

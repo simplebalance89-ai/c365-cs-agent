@@ -146,22 +146,96 @@ const MOCK_TICKETS = [
       { author: "Tom Bradley", role: "customer", time: "9:55 AM", body: "Hey — I reset my locker combo yesterday (Locker #23 on Floor 2) and now neither the old code nor the new one is working. My laptop bag is in there." }
     ],
     ai_response: "Hi Tom,\n\nNo worries — this happens occasionally after combo resets. Easy fix!\n\nOur front desk has a master override key for all lockers. Just swing by the main reception and mention Locker #23 on Floor 2 — they can open it for you immediately, no wait.\n\nWhile you're there, they can also do a full combo reset with you present to make sure the new code takes correctly.\n\nSorry for the inconvenience!\n\nLuxor Workspaces Support"
+  },
+  {
+    id: 1009,
+    subject: "Where is my order? Placed 2 weeks ago — no tracking update",
+    requester: "David Nguyen",
+    requester_email: "d.nguyen@brightpath.io",
+    priority: "high",
+    status: "open",
+    category: "Orders",
+    created_at: "2024-01-15T11:45:00Z",
+    updated_at: "2024-01-15T12:10:00Z",
+    sentiment: "frustrated",
+    ai_summary: "Customer placed an order for office furniture 2 weeks ago and has received no shipping or tracking updates. Order #LW-88421. Growing frustration — this is a follow-up inquiry (second contact). Should be prioritized and investigated with fulfillment team immediately.",
+    conversation: [
+      { author: "David Nguyen", role: "customer", time: "11:45 AM", body: "I ordered 4 standing desks and 4 ergonomic chairs for our new suite two weeks ago (Order #LW-88421). I haven't received any shipping confirmation or tracking number. I emailed last week and got no response. We're moving into the suite next Monday and need this furniture. What's going on?" },
+      { author: "Support Agent", role: "agent", time: "12:00 PM", body: "Hi David, I sincerely apologize for the lack of communication. Let me pull up your order right now and get you a status update. Can you confirm the suite number you're moving into?" },
+      { author: "David Nguyen", role: "customer", time: "12:10 PM", body: "Suite 7A, Floor 3. And honestly, the fact that nobody responded to my first email is really disappointing. We chose Luxor because of the premium service promise." }
+    ],
+    ai_response: "Hi David,\n\nYou're absolutely right to be frustrated — a two-week gap with no communication on a furniture order is not the standard we hold ourselves to, and the missed email makes it worse. I'm sorry.\n\nI've tracked down your order (#LW-88421). Here's the status:\n\n• 4x Standing Desks (ErgoLift Pro): Shipped from warehouse on Jan 10 — FedEx tracking #7829-4451-3390. Estimated delivery: Thursday, Jan 18\n• 4x Ergonomic Chairs (LuxComfort): Backordered — expected to ship Jan 19, delivery by Jan 22\n\nThe desks will arrive before your Monday move-in. The chairs will be 1-2 days late. Here's what I'm doing about it:\n\n1. I'm having our facilities team place 4 loaner chairs in Suite 7A before Monday so you're fully set up on day one\n2. The ergonomic chairs will be delivered directly to Suite 7A and swapped in as soon as they arrive\n3. I'm crediting your account $200 for the delayed communication and inconvenience\n\nI'll personally send you daily updates until everything is delivered and set up. You have my direct line: ext. 142.\n\nAgain, I apologize — this isn't the Luxor experience you signed up for, and we're making it right.\n\nLuxor Workspaces Support"
+  },
+  {
+    id: 1010,
+    subject: "Warranty claim — monitor arm broke after 3 months",
+    requester: "Lisa Park",
+    requester_email: "lisa.park@vectorlabs.com",
+    priority: "normal",
+    status: "open",
+    category: "Warranty",
+    created_at: "2024-01-15T08:20:00Z",
+    updated_at: "2024-01-15T08:20:00Z",
+    sentiment: "neutral",
+    ai_summary: "Member reporting a broken monitor arm that was part of their premium desk package. Item is 3 months old and should be within the standard 12-month warranty. Needs replacement or repair. Standard warranty process — verify purchase, approve claim, ship replacement.",
+    conversation: [
+      { author: "Lisa Park", role: "customer", time: "8:20 AM", body: "Hi — the dual monitor arm that came with my premium desk setup in Suite 5C snapped at the joint this morning. My monitor almost fell off the desk. I've only had this setup for about 3 months. I assume this is covered under warranty? What do I need to do to get a replacement?" }
+    ],
+    ai_response: "Hi Lisa,\n\nI'm glad the monitor didn't fall — that could have been a real problem. And yes, your dual monitor arm is absolutely covered under our 12-month equipment warranty.\n\nHere's what happens next:\n\n1. I've opened warranty claim #WC-2241 for your monitor arm (Suite 5C, premium desk package)\n2. A replacement dual monitor arm is being shipped today — expected delivery by Wednesday\n3. Our facilities tech will come install it and remove the broken unit at a time that works for you\n\nNo paperwork needed on your end — I've verified your purchase and warranty status.\n\nIn the meantime, I'm having a temporary single monitor stand brought to Suite 5C today so you're not without a setup. The front desk will bring it up within the hour.\n\nJust reply here or call ext. 110 when the replacement arrives and you'd like it installed.\n\nLuxor Workspaces Support"
+  },
+  {
+    id: 1011,
+    subject: "Order status — standing desk accessories bundle",
+    requester: "James Carter",
+    requester_email: "james@carterdigital.co",
+    priority: "low",
+    status: "open",
+    category: "Orders",
+    created_at: "2024-01-15T07:15:00Z",
+    updated_at: "2024-01-15T07:15:00Z",
+    sentiment: "neutral",
+    ai_summary: "Routine order status inquiry for a standing desk accessories bundle (cable management kit, keyboard tray, monitor riser). Order placed 5 days ago. No urgency indicated — member is just checking in. Standard fulfillment timeline is 5-7 business days.",
+    conversation: [
+      { author: "James Carter", role: "customer", time: "7:15 AM", body: "Hey, just checking in on my order for the standing desk accessories bundle (cable management kit, keyboard tray, and monitor riser). I placed it last Wednesday. Any idea when it'll ship? No rush, just planning ahead." }
+    ],
+    ai_response: "Hi James,\n\nThanks for checking in! I pulled up your order and here's where things stand:\n\n• Order #LW-89102 — Standing Desk Accessories Bundle\n• Status: Packed and ready for shipment\n• Expected ship date: Tomorrow (Jan 16)\n• Estimated delivery: Friday, Jan 19\n\nYou'll receive a shipping confirmation email with tracking as soon as it goes out tomorrow.\n\nWould you like our facilities team to install the cable management kit and keyboard tray when the package arrives? We offer complimentary installation for desk accessories — just let us know.\n\nThanks for the order!\n\nLuxor Workspaces Support"
+  },
+  {
+    id: 1012,
+    subject: "Warranty on office chair — lumbar support broken, chair is 10 months old",
+    requester: "Monica Reyes",
+    requester_email: "m.reyes@suncoastmedia.com",
+    priority: "high",
+    status: "open",
+    category: "Warranty",
+    created_at: "2024-01-15T09:30:00Z",
+    updated_at: "2024-01-15T09:50:00Z",
+    sentiment: "frustrated",
+    ai_summary: "Ergonomic chair with broken lumbar support mechanism, 10 months old. Within 12-month warranty. Customer is frustrated because this is impacting her back — health concern elevates priority. Second piece of furniture she's had issues with (mentioned previous desk wobble). Should be fast-tracked.",
+    conversation: [
+      { author: "Monica Reyes", role: "customer", time: "9:30 AM", body: "The lumbar support on my ergonomic chair completely gave out. The adjustment knob spins freely and the back has no support anymore. This chair is maybe 10 months old. This is the second piece of furniture I've had issues with — the desk wobbled for weeks before someone fixed it. I'm getting really frustrated with the quality." },
+      { author: "Support Agent", role: "agent", time: "9:45 AM", body: "Hi Monica, I'm sorry to hear this — especially since you've had previous furniture issues. Let me look into the warranty and get this resolved quickly. Are you experiencing any back discomfort?" },
+      { author: "Monica Reyes", role: "customer", time: "9:50 AM", body: "Yes, actually. I've been dealing with lower back pain the last few days because of this. I didn't connect it to the chair until the lumbar fully broke today." }
+    ],
+    ai_response: "Hi Monica,\n\nI'm really sorry — both about the chair and your back pain. A broken lumbar support absolutely can cause that, and we need to fix this today, not later.\n\nHere's what I'm doing right now:\n\n1. **Immediate:** I'm having a brand new ergonomic chair delivered to your desk within 2 hours. Not a loaner — your permanent replacement under warranty claim #WC-2243.\n2. **Your old chair:** Our facilities team will remove it when they deliver the new one.\n3. **The pattern:** I've flagged your account noting this is your second furniture issue. I'm escalating to our procurement team to review the batch quality for your suite's furnishings.\n4. **Goodwill credit:** $150 account credit for the discomfort and the repeated issues. This shouldn't be your experience at Luxor.\n\nI also strongly recommend seeing your doctor about the back pain if it continues — and if there are any related costs, please let us know. We take member health seriously.\n\nI'll follow up personally once the new chair is in place to make sure everything is right.\n\nLuxor Workspaces Support"
   }
 ];
 
 const MOCK_INSIGHTS = {
-  tickets_received: 47,
-  resolved_today: 31,
-  resolution_rate: "66%",
-  avg_response_time: "4.2 min",
+  tickets_received: 58,
+  resolved_today: 39,
+  resolution_rate: "67%",
+  avg_response_time: "3.8 min",
   csat_score: "4.7/5",
-  open_urgent: 2,
+  open_urgent: 3,
   categories: [
-    { name: "Facilities", count: 14, pct: 30 },
-    { name: "Technical / IT", count: 12, pct: 26 },
-    { name: "Bookings", count: 9, pct: 19 },
-    { name: "Account / Billing", count: 7, pct: 15 },
-    { name: "Sales / Upgrade", count: 5, pct: 11 }
+    { name: "Orders / Shipping", count: 16, pct: 28 },
+    { name: "Facilities", count: 12, pct: 21 },
+    { name: "Warranty / Returns", count: 9, pct: 16 },
+    { name: "Technical / IT", count: 8, pct: 14 },
+    { name: "Bookings", count: 6, pct: 10 },
+    { name: "Account / Billing", count: 4, pct: 7 },
+    { name: "Sales / Upgrade", count: 3, pct: 5 }
   ],
   sentiment: { positive: 45, neutral: 32, negative: 23 },
   activity: [

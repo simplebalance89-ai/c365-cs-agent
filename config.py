@@ -17,21 +17,21 @@ class Settings(BaseSettings):
     port: int = 8000
 
     # ── Anthropic / Claude ───────────────────────────────────────────────────
-    anthropic_api_key: str
+    anthropic_api_key: str = ""
     claude_model_classify: str = "claude-sonnet-4-6"
     claude_model_respond: str = "claude-sonnet-4-6"
     claude_max_tokens: int = 1024
 
     # ── Zendesk ──────────────────────────────────────────────────────────────
-    zendesk_subdomain: str          # e.g. "conveyance365" → conveyance365.zendesk.com
-    zendesk_email: str              # agent email registered in Zendesk
-    zendesk_api_token: str          # Zendesk API token (Settings > API)
+    zendesk_subdomain: str = "demo"
+    zendesk_email: str = "demo@conveyance365.com"
+    zendesk_api_token: str = ""
 
     # ── Microsoft Graph / Outlook ─────────────────────────────────────────────
-    ms_tenant_id: str
-    ms_client_id: str
-    ms_client_secret: str
-    ms_mailbox: str                 # monitored mailbox UPN, e.g. support@conveyance365.com
+    ms_tenant_id: str = ""
+    ms_client_id: str = ""
+    ms_client_secret: str = ""
+    ms_mailbox: str = "demo@conveyance365.com"
     ms_graph_scope: str = "https://graph.microsoft.com/.default"
 
     # ── Azure App Service ─────────────────────────────────────────────────────

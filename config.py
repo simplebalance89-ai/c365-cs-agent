@@ -1,5 +1,5 @@
 """
-config.py — Environment configuration for C365 CS Agent
+config.py — Environment configuration for Luxor Workspaces CS Agent
 All secrets are loaded from environment variables. Never hardcode credentials.
 """
 
@@ -10,7 +10,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # ── App ──────────────────────────────────────────────────────────────────
-    app_name: str = "C365 CS Agent"
+    app_name: str = "Luxor Workspaces CS Agent"
     app_version: str = "1.0.0"
     environment: str = "development"
     debug: bool = False
@@ -24,14 +24,14 @@ class Settings(BaseSettings):
 
     # ── Zendesk ──────────────────────────────────────────────────────────────
     zendesk_subdomain: str = "demo"
-    zendesk_email: str = "demo@conveyance365.com"
+    zendesk_email: str = "demo@luxorworkspaces.com"
     zendesk_api_token: str = ""
 
     # ── Microsoft Graph / Outlook ─────────────────────────────────────────────
     ms_tenant_id: str = ""
     ms_client_id: str = ""
     ms_client_secret: str = ""
-    ms_mailbox: str = "demo@conveyance365.com"
+    ms_mailbox: str = "demo@luxorworkspaces.com"
     ms_graph_scope: str = "https://graph.microsoft.com/.default"
 
     # ── Azure App Service ─────────────────────────────────────────────────────

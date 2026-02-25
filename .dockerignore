@@ -1,4 +1,4 @@
-# .dockerignore — C365 CS Agent
+# .dockerignore — Luxor Workspaces CS Agent
 # Keeps the Docker image lean and secrets out of the build context
 
 # Python cache / compiled files

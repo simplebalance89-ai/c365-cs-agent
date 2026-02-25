@@ -87,8 +87,8 @@ def _parse_json_response(text: str) -> dict[str, Any]:
 # ── Ticket Classification ─────────────────────────────────────────────────────
 
 CLASSIFY_SYSTEM = """
-You are an expert customer service operations analyst for Conveyance365,
-an ERP consulting and AI automation company.
+You are an expert customer service operations analyst for Luxor Workspaces,
+a premium coworking and shared workspace company.
 
 Your job is to classify incoming support tickets. You must respond with ONLY
 a valid JSON object — no commentary, no markdown, just JSON.
@@ -105,19 +105,19 @@ Classification schema:
 }
 
 Priority guidelines:
-- urgent: System outage, data loss risk, legal threat, client threatening to cancel, production ERP down
-- high: Billing dispute, integration failure, repeated issue, urgent support request
+- urgent: System outage, data loss risk, legal threat, client threatening to cancel, facility emergency
+- high: Billing dispute, recurring facility issue, repeated complaint, urgent support request
 - normal: Routine requests, general questions, minor issues
 - low: Suggestions, compliments, non-time-sensitive inquiries
 
 Escalation triggers (set should_escalate=true):
 - Legal language or threats
-- Production system outage or data integrity risk
+- Facility emergency or safety concern
 - Client threatening to cancel or mentioning competitors
 - Media/PR mention
 - Second complaint on same issue
 - Billing dispute over $500
-- Critical ERP or integration failure
+- Critical facility or IT infrastructure failure
 """
 
 
@@ -126,7 +126,7 @@ def classify_ticket(ticket: ZendeskTicket) -> TicketClassification:
     knowledge = build_knowledge_context()
 
     user_prompt = f"""
-Classify this Conveyance365 support ticket.
+Classify this Luxor Workspaces support ticket.
 
 TICKET ID: {ticket.id}
 SUBJECT: {ticket.subject}
@@ -176,7 +176,7 @@ KNOWLEDGE BASE CONTEXT:
 # ── Response Generation ───────────────────────────────────────────────────────
 
 RESPOND_SYSTEM = """
-You are a customer service agent for Conveyance365, a premium commercial
+You are a customer service agent for Luxor Workspaces, a premium commercial
 office solutions company. You write professional, warm, solution-oriented
 responses to client inquiries.
 
@@ -194,7 +194,7 @@ Response guidelines:
 - Acknowledge the issue/request with empathy
 - Provide a clear, actionable answer
 - End with a specific next step or offer to help further
-- Sign off with "The Conveyance365 Team" unless writing as a named agent
+- Sign off with "The Luxor Workspaces Team" unless writing as a named agent
 - Keep body under 250 words unless complexity demands more
 - Never make up prices, timelines, or specific project details — direct to the right contact instead
 - If escalation is needed, acknowledge and say you're connecting them with the right person
@@ -212,7 +212,7 @@ def generate_ticket_response(
     )
 
     user_prompt = f"""
-Generate a customer service response for this Conveyance365 support ticket.
+Generate a customer service response for this Luxor Workspaces support ticket.
 
 TICKET ID: {ticket.id}
 SUBJECT: {ticket.subject}
@@ -255,9 +255,9 @@ Write a response that directly addresses the client's issue.
             subject=f"Re: {ticket.subject}",
             body=(
                 f"Dear {requester_name or 'Member'},\n\n"
-                "Thank you for reaching out to Conveyance365. We have received your message "
+                "Thank you for reaching out to Luxor Workspaces. We have received your message "
                 "and a member of our team will be in touch shortly.\n\n"
-                "The Conveyance365 Team"
+                "The Luxor Workspaces Team"
             ),
             suggested_status=TicketStatus.pending,
         )
@@ -275,7 +275,7 @@ def generate_email_response(
     )
 
     user_prompt = f"""
-Generate a customer service email response for this inbound message to Conveyance365.
+Generate a customer service email response for this inbound message to Luxor Workspaces.
 
 FROM: {email.sender_name or email.sender_email}
 SUBJECT: {email.subject}
@@ -307,9 +307,9 @@ Write a warm, professional email response addressing the inquiry directly.
             subject=f"Re: {email.subject}",
             body=(
                 f"Dear {email.sender_name or 'Member'},\n\n"
-                "Thank you for contacting Conveyance365. We have received your message "
+                "Thank you for contacting Luxor Workspaces. We have received your message "
                 "and will respond within 4 business hours.\n\n"
-                "The Conveyance365 Team"
+                "The Luxor Workspaces Team"
             ),
             suggested_status=TicketStatus.pending,
         )
@@ -318,7 +318,7 @@ Write a warm, professional email response addressing the inquiry directly.
 # ── Customer History Summarization ───────────────────────────────────────────
 
 HISTORY_SYSTEM = """
-You are a customer success analyst for Conveyance365. Given a list of support
+You are a customer success analyst for Luxor Workspaces. Given a list of support
 tickets for a client, produce a concise client profile summary.
 
 Respond ONLY with a valid JSON object:
@@ -330,7 +330,7 @@ Respond ONLY with a valid JSON object:
 }
 
 Flag as VIP if:
-- Client has been with C365 for many tickets over time with positive sentiment
+- Client has been with Luxor Workspaces for many tickets over time with positive sentiment
 - Client has a high volume of tickets (>10) suggesting enterprise-level engagement
 - Client explicitly mentioned in escalation history but issue was resolved positively
 """
@@ -362,7 +362,7 @@ def summarize_customer_history(
     )
 
     user_prompt = f"""
-Summarize the ticket history for this Conveyance365 client.
+Summarize the ticket history for this Luxor Workspaces client.
 
 EMAIL: {requester_email}
 TOTAL TICKETS: {len(tickets)}

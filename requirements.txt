@@ -1,4 +1,4 @@
-# C365 CS Agent — Python Dependencies
+# Luxor Workspaces CS Agent — Python Dependencies
 # Python 3.11+ required
 
 # ── Web Framework ─────────────────────────────────────────────────────────────

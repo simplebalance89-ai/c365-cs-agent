@@ -1,5 +1,5 @@
 #!/bin/bash
-# azure-deploy.sh — One-command Azure Container Apps deployment for C365 CS Agent
+# azure-deploy.sh — One-command Azure Container Apps deployment for Luxor Workspaces CS Agent
 #
 # Usage:
 #   chmod +x azure-deploy.sh
@@ -14,13 +14,13 @@ set -euo pipefail
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-RESOURCE_GROUP="c365-cs-agent-rg"
+RESOURCE_GROUP="luxor-cs-agent-rg"
 LOCATION="eastus"
-CONTAINER_ENV="c365-cs-env"
-CONTAINER_APP_NAME="c365-cs-agent"
-DOCKER_IMAGE_NAME="c365-cs-agent"
+CONTAINER_ENV="luxor-cs-env"
+CONTAINER_APP_NAME="luxor-cs-agent"
+DOCKER_IMAGE_NAME="luxor-cs-agent"
 DOCKER_IMAGE_TAG="latest"
-ACR_NAME="c365csacr"          # Azure Container Registry name (must be globally unique)
+ACR_NAME="luxorcsacr"          # Azure Container Registry name (must be globally unique)
 ENV_FILE=".env"
 
 # ── Colors ────────────────────────────────────────────────────────────────────

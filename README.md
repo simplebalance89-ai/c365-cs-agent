@@ -1,6 +1,6 @@
-# C365 CS Agent
+# Luxor Workspaces CS Agent
 
-AI-powered customer service agent for Conveyance365.
+AI-powered customer service agent for Luxor Workspaces.
 Integrates Zendesk + Microsoft Outlook via Claude AI.
 
 ---
@@ -10,7 +10,7 @@ Integrates Zendesk + Microsoft Outlook via Claude AI.
 | Capability | How |
 |---|---|
 | Ticket classification | Claude analyzes subject + description → priority, category, sentiment, escalation flag |
-| Response generation | Claude drafts on-brand replies using the C365 knowledge base |
+| Response generation | Claude drafts on-brand replies using the Luxor Workspaces knowledge base |
 | Email monitoring | Graph API polls support inbox for unread messages |
 | Email-to-ticket matching | Finds existing Zendesk tickets by sender email |
 | Customer history | AI summary of all tickets for a requester |
@@ -57,7 +57,7 @@ API docs: http://localhost:8000/docs
 GET http://localhost:8000/demo
 ```
 
-Returns a live Claude-generated ticket classification and response using mock C365 data.
+Returns a live Claude-generated ticket classification and response using mock Luxor Workspaces data.
 
 ---
 
@@ -68,7 +68,7 @@ See `.env.example` for all required variables.
 | Variable | Description |
 |---|---|
 | `ANTHROPIC_API_KEY` | Anthropic Console → API Keys |
-| `ZENDESK_SUBDOMAIN` | e.g. `conveyance365` |
+| `ZENDESK_SUBDOMAIN` | e.g. `luxorworkspaces` |
 | `ZENDESK_EMAIL` | Agent email in Zendesk |
 | `ZENDESK_API_TOKEN` | Zendesk Admin → Settings → API |
 | `MS_TENANT_ID` | Azure AD tenant ID |
@@ -82,7 +82,7 @@ See `.env.example` for all required variables.
 ## Azure App Registration (Microsoft Graph)
 
 1. Azure Portal → Azure Active Directory → App registrations → New registration
-2. Name: `C365CSAgent`, Supported account types: Single tenant
+2. Name: `LuxorCSAgent`, Supported account types: Single tenant
 3. Certificates & secrets → New client secret → copy value to `MS_CLIENT_SECRET`
 4. API permissions → Add permission → Microsoft Graph → Application permissions:
    - `Mail.Read`
@@ -135,7 +135,7 @@ Full interactive docs at `/docs`.
 
 ```
                     ┌─────────────────────────────────────────────┐
-                    │              C365 CS Agent API                │
+                    │              Luxor Workspaces CS Agent API                │
                     │              (FastAPI / Azure)                │
                     └──────┬──────────────┬────────────────────────┘
                            │              │
@@ -157,7 +157,7 @@ Full interactive docs at `/docs`.
                                   │
                     ┌─────────────▼─────────────┐
                     │       knowledge_base       │
-                    │  (C365 policies, FAQ,      │
+                    │  (Luxor Workspaces policies, FAQ,      │
                     │   services, SLA, contacts) │
                     └───────────────────────────┘
 ```

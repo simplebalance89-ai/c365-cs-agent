@@ -1,11 +1,11 @@
-# Dockerfile — C365 CS Agent (Azure Container Apps)
+# Dockerfile — Luxor Workspaces CS Agent (Azure Container Apps)
 # Python 3.11-slim, production-grade
 
 FROM python:3.11-slim
 
 # Metadata
 LABEL maintainer="Peter Wilson"
-LABEL app="c365-cs-agent"
+LABEL app="luxor-cs-agent"
 LABEL version="1.0.0"
 
 # Security: run as non-root user

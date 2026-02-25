@@ -1,5 +1,5 @@
 """
-zendesk_client.py — Zendesk API wrapper for C365 Customer Service Agent.
+zendesk_client.py — Zendesk API wrapper for Luxor Workspaces Customer Service Agent.
 
 Authentication: email/token (Basic Auth with "{email}/token:{api_token}").
 Docs: https://developer.zendesk.com/api-reference/
@@ -142,7 +142,7 @@ def _demo_tickets() -> list[ZendeskTicket]:
             subject="SSO login loop after Azure AD update",
             description=(
                 "After our Azure AD tenant update, users hit a redirect loop "
-                "when trying to SSO into the C365 portal. Clearing cookies "
+                "when trying to SSO into the Luxor Workspaces portal. Clearing cookies "
                 "doesn't fix it. Affects all Chrome users, Edge works fine."
             ),
             status=TicketStatus.closed,
@@ -163,9 +163,9 @@ _DEMO_USERS: dict[int, dict[str, Any]] = {
     9004: {"id": 9004, "name": "Robert Chen", "email": "rchen@precisionmfg.com", "role": "end-user"},
     9005: {"id": 9005, "name": "Angela Torres", "email": "angela.torres@summitsupply.com", "role": "end-user"},
     9006: {"id": 9006, "name": "Kevin Draper", "email": "kdraper@greatlakesind.com", "role": "end-user"},
-    5001: {"id": 5001, "name": "C365 Support — Tier 1", "email": "support@conveyance365.com", "role": "agent"},
-    5002: {"id": 5002, "name": "C365 Support — Tier 2", "email": "tier2@conveyance365.com", "role": "agent"},
-    5003: {"id": 5003, "name": "C365 Support — Billing", "email": "billing@conveyance365.com", "role": "agent"},
+    5001: {"id": 5001, "name": "Luxor Support — Tier 1", "email": "support@luxorworkspaces.com", "role": "agent"},
+    5002: {"id": 5002, "name": "Luxor Support — Tier 2", "email": "tier2@luxorworkspaces.com", "role": "agent"},
+    5003: {"id": 5003, "name": "Luxor Support — Billing", "email": "billing@luxorworkspaces.com", "role": "agent"},
 }
 
 

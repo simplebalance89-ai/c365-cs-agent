@@ -1,9 +1,9 @@
 """
-knowledge_base.py — Conveyance365 (C365) knowledge for AI response generation.
+knowledge_base.py — Luxor Workspaces knowledge for AI response generation.
 
 This module provides structured knowledge the AI engine injects into prompts
 so Claude generates accurate, on-brand responses without hallucinating
-C365-specific details.
+Luxor Workspaces-specific details.
 """
 
 from __future__ import annotations
@@ -11,153 +11,114 @@ from __future__ import annotations
 # ── Company Overview ──────────────────────────────────────────────────────────
 
 COMPANY_OVERVIEW = """
-Conveyance365 (C365) is a technology consulting firm specializing in ERP
-optimization and AI automation for mid-market manufacturers and distributors.
-We help companies get more out of their existing ERP investments — Epicor P21,
-NetSuite, and similar platforms — by combining deep system expertise with
-purpose-built AI agents that automate manual workflows, improve data quality,
-and deliver real-time operational intelligence. Our clients typically range
-from $10M to $500M in annual revenue across manufacturing, distribution,
-and industrial services.
+Luxor Workspaces is a premium coworking and shared workspace company offering
+flexible office solutions for professionals, startups, and growing businesses.
+We provide private offices, hot desks, dedicated desks, conference rooms,
+event spaces, and a full suite of business amenities. Our spaces are designed
+for productivity, collaboration, and growth — with 24/7 access, high-speed
+WiFi, mail handling, printing, and on-site support. Members range from solo
+freelancers to teams of 50+ across technology, creative, legal, financial,
+and professional services.
 """
 
 # ── Services Catalog ─────────────────────────────────────────────────────────
 
 SERVICES = {
-    "erp_health_check": {
-        "name": "ERP Health Check",
-        "description": "Comprehensive audit of your current ERP environment. We assess data quality, "
-                       "workflow efficiency, integration gaps, unused modules, and optimization opportunities. "
-                       "Delivered as a prioritized action plan with ROI estimates.",
-        "pricing": "$5,000 flat fee",
-        "duration": "2-3 weeks",
-        "deliverables": ["Current-state assessment report", "Data quality scorecard",
-                         "Prioritized optimization roadmap", "ROI projection for top 5 recommendations"],
-        "platforms": ["Epicor P21", "NetSuite", "Sage", "Infor"],
+    "hot_desk": {
+        "name": "Hot Desk Membership",
+        "description": "Flexible seating in our open workspace. First-come, first-served desk access "
+                       "during business hours or 24/7 depending on plan. Includes WiFi, printing, "
+                       "coffee/tea, and access to common areas.",
+        "pricing": "$299/month per desk",
+        "includes": ["High-speed WiFi", "Printing (50 pages/month)", "Coffee and tea bar",
+                     "Mail handling", "2 hours conference room/month", "Community events access"],
     },
-    "ai_agent_suite": {
-        "name": "AI Agent Suite",
-        "description": "Custom-built AI agents that automate repetitive ERP tasks. Agents handle "
-                       "customer service inquiries, purchase order processing, inventory alerts, "
-                       "quote generation, vendor communication, and more. Each agent is configured "
-                       "per client and tailored to your specific business rules and ERP schema.",
-        "pricing": "$2,500 - $15,000/month subscription (based on agent count and complexity)",
-        "setup_fee": "One-time implementation fee based on scope (typically $5,000 - $25,000)",
-        "includes": ["Agent configuration and deployment", "ERP integration",
-                     "Ongoing model tuning", "Monthly performance reporting",
-                     "Dedicated support channel"],
-        "common_agents": ["Customer Service Agent", "PO Processing Agent", "Inventory Alert Agent",
-                          "Quote Generation Agent", "Vendor Communication Agent",
-                          "Collections Follow-Up Agent"],
+    "dedicated_desk": {
+        "name": "Dedicated Desk",
+        "description": "Your own permanent desk in a shared space. Keep your setup, leave your things. "
+                       "24/7 access, lockable storage, and all hot desk perks included.",
+        "pricing": "$499/month per desk",
+        "includes": ["24/7 access", "Lockable storage", "Ergonomic chair", "All hot desk perks",
+                     "4 hours conference room/month", "Mail handling with suite number"],
     },
-    "data_migration": {
-        "name": "Data Migration & Cleanup",
-        "description": "Full-service data migration between ERP systems or major data cleanup within "
-                       "your existing platform. Includes data mapping, validation rules, duplicate "
-                       "resolution, and post-migration verification.",
-        "pricing": "$150/hr",
-        "typical_engagements": ["Legacy system to P21 migration", "P21 version upgrades",
-                                "Customer/vendor master cleanup", "Item master standardization",
-                                "Historical data archival"],
+    "private_office": {
+        "name": "Private Office",
+        "description": "Fully enclosed private offices for teams of 1-20+. Furnished, lockable, "
+                       "with dedicated climate control. Includes all membership perks plus dedicated "
+                       "phone line and enhanced conference room hours.",
+        "pricing": "$850 - $5,000+/month (based on size and floor)",
+        "sizes": ["1-person (solo studio)", "2-4 person", "5-10 person", "10-20+ person (enterprise)"],
+        "includes": ["24/7 access", "Furniture included", "Dedicated climate control",
+                     "10 hours conference room/month", "Mail handling with suite number",
+                     "Phone line", "Signage on door"],
     },
-    "custom_reports": {
-        "name": "Custom Report Development",
-        "description": "Custom reports, dashboards, and analytics built on your ERP data. "
-                       "Crystal Reports, SSRS, Power BI, or direct SQL. We build what your "
-                       "team actually needs to make decisions.",
-        "pricing": "$175/hr",
-        "platforms": ["Crystal Reports", "SSRS", "Power BI", "Excel/SQL direct"],
-        "examples": ["Sales performance dashboards", "Inventory aging analysis",
-                     "Margin reporting by customer/product", "AR aging with collection priority scoring",
-                     "Warehouse throughput metrics"],
+    "conference_rooms": {
+        "name": "Conference Room Booking",
+        "description": "Professional meeting rooms with video conferencing, whiteboards, and catering options. "
+                       "Bookable by the hour or as part of a membership plan. Recurring bookings available.",
+        "pricing": "$25-75/hour (member rates), $50-125/hour (non-member)",
+        "rooms": ["Huddle rooms (2-4 people)", "Boardroom 1 (8 people)", "Boardroom 2 (12 people)",
+                  "Training room (20 people)", "Event space (50+ people)"],
     },
-    "integration_services": {
-        "name": "P21/NetSuite Integration Services",
-        "description": "Build and maintain integrations between your ERP and external systems. "
-                       "EDI, eCommerce, CRM, shipping, payment processing, and custom API work. "
-                       "We handle the middleware, mapping, error handling, and monitoring.",
-        "pricing": "$200/hr",
-        "common_integrations": ["EDI (SPS Commerce, TrueCommerce)", "Shopify / BigCommerce / Magento",
-                                "Salesforce / HubSpot CRM", "ShipStation / UPS / FedEx",
-                                "Payment gateways", "Custom REST/SOAP APIs"],
-        "platforms": ["Epicor P21", "NetSuite", "Celigo", "Boomi", "Custom middleware"],
+    "virtual_office": {
+        "name": "Virtual Office",
+        "description": "Professional business address, mail handling, and receptionist services "
+                       "without a physical desk. Perfect for remote workers who need a professional presence.",
+        "pricing": "$99/month",
+        "includes": ["Business address for registration", "Mail receiving and forwarding",
+                     "Phone answering service", "2 hours conference room/month",
+                     "Access to common areas during business hours"],
     },
-    "support_retainer": {
-        "name": "Ongoing Support Retainer",
-        "description": "Dedicated monthly hours for ongoing ERP support, troubleshooting, "
-                       "minor enhancements, user training, and system administration. "
-                       "Your team gets a direct line to C365 engineers without project-level overhead.",
-        "tiers": {
-            "standard": "10 hours/month at $175/hr ($1,750/mo)",
-            "professional": "20 hours/month at $165/hr ($3,300/mo)",
-            "enterprise": "40 hours/month at $150/hr ($6,000/mo)",
-        },
-        "includes": ["Dedicated account manager", "Priority queue access",
-                     "Monthly usage reporting", "Rollover of unused hours (up to 25%)",
-                     "Quarterly business review"],
+    "event_space": {
+        "name": "Event Space Rental",
+        "description": "Host workshops, networking events, product launches, and team offsites "
+                       "in our flexible event spaces. Catering and AV equipment available.",
+        "pricing": "$500-2,000 per event (varies by space and duration)",
+        "includes": ["AV equipment", "Flexible seating arrangements", "Catering coordination",
+                     "Event support staff", "WiFi for all attendees"],
     },
 }
 
 # ── Policies ─────────────────────────────────────────────────────────────────
 
 POLICIES = {
-    "sow_terms": {
-        "scope": "All project work is governed by a signed Statement of Work (SOW) that defines "
-                 "scope, deliverables, timeline, acceptance criteria, and pricing. No work begins "
-                 "without a signed SOW.",
-        "change_orders": "Any work outside the original SOW scope requires a written Change Order "
-                         "signed by both parties before work begins. Change Orders specify additional "
-                         "scope, timeline impact, and cost. Verbal approvals are not binding.",
-        "acceptance": "Deliverables are subject to a 10 business day acceptance period after delivery. "
-                      "If no feedback is received within the acceptance period, deliverables are "
-                      "considered accepted.",
+    "membership_terms": {
+        "agreement": "All memberships are governed by a signed Membership Agreement that defines "
+                     "the plan type, term, pricing, and included amenities. No access is granted "
+                     "without a signed agreement.",
+        "term": "Month-to-month memberships require 30 days notice to cancel. Annual memberships "
+                "receive a 10% discount and require 60 days notice.",
+        "modifications": "Plan upgrades take effect immediately. Downgrades take effect at the next "
+                         "billing cycle. Pro-rated credits are applied for mid-cycle upgrades.",
     },
     "billing": {
-        "payment_terms": "Net-30 from invoice date. Invoices issued on the 1st and 15th of each month "
-                         "for time-and-materials work. Fixed-fee projects invoiced per milestone schedule "
-                         "defined in the SOW.",
-        "accepted_methods": ["ACH / wire transfer (preferred)", "Credit card (3% processing fee)",
-                             "Check (payable to Conveyance365 LLC)"],
+        "payment_terms": "Memberships are billed monthly in advance on the 1st of each month. "
+                         "Conference room overages and add-on services are billed at month end.",
+        "accepted_methods": ["ACH / wire transfer (preferred)", "Credit card",
+                             "Check (payable to Luxor Workspaces LLC)"],
         "late_payment": "A late fee of 1.5% per month applies to balances past due beyond 15 days. "
-                        "C365 reserves the right to suspend services on accounts more than 45 days past due.",
-        "deposits": "Fixed-fee projects require a 50% deposit before work begins. "
-                    "Retainer clients are invoiced monthly in advance.",
+                        "Luxor Workspaces reserves the right to suspend access on accounts more than 30 days past due.",
+        "deposits": "Private office leases require first and last month deposit. "
+                    "All other memberships are billed monthly in advance with no deposit.",
     },
-    "sla_response": {
-        "retainer_clients": "Retainer clients receive priority queue access with guaranteed response "
-                            "times per the SLA table. Response time is measured from ticket submission "
-                            "to first meaningful response (not auto-acknowledgment).",
-        "project_clients": "Active project clients receive standard response times. Support outside "
-                           "project scope is billed at the applicable hourly rate.",
-        "after_hours": "Critical (system down) issues are supported 24/7 for Enterprise retainer clients. "
-                       "All other tiers: business hours only (Monday-Friday 8 AM - 6 PM ET).",
-    },
-    "ip_ownership": {
-        "client_ip": "All custom code, reports, configurations, and deliverables created specifically "
-                     "for the client under an SOW become the client's intellectual property upon "
-                     "final payment.",
-        "c365_ip": "C365 retains ownership of all pre-existing tools, frameworks, libraries, and "
-                   "methodologies used in delivery. Client receives a perpetual, non-exclusive license "
-                   "to use any C365 IP embedded in their deliverables.",
-        "ai_agents": "AI Agent Suite subscriptions are licensed, not sold. Agent configurations, "
-                     "training data, and prompt engineering remain C365 IP. Client data processed "
-                     "by agents remains client property at all times.",
+    "facilities": {
+        "access_hours": "Hot desk members: business hours (7 AM - 9 PM). Dedicated desk and private "
+                        "office members: 24/7 access with key card. Event spaces by reservation only.",
+        "guest_policy": "Members may bring up to 2 guests per day at no charge. Additional guests "
+                        "are $15/day each. All guests must check in at reception.",
+        "noise_policy": "Phone calls and video meetings should be taken in phone booths or conference "
+                        "rooms. The open workspace is a professional, low-noise environment.",
+        "maintenance": "Facilities issues should be reported via the support portal or front desk. "
+                       "Emergency maintenance (HVAC, plumbing, electrical) is handled within 1 hour. "
+                       "Non-emergency requests within 24 hours.",
     },
     "data_handling": {
-        "security": "All client data is encrypted in transit (TLS 1.2+) and at rest (AES-256). "
-                    "C365 engineers access client systems only through approved, audited channels.",
-        "environments": "Development and testing use anonymized or synthetic data wherever possible. "
-                        "Production data access requires explicit client authorization.",
-        "retention": "Client data is retained only for the duration of the active engagement plus "
-                     "90 days. Upon request or engagement end, all client data is securely purged "
-                     "and a certificate of destruction is provided.",
-        "compliance": "C365 supports SOC 2 Type II compliance requirements. We sign BAAs for "
-                      "clients in regulated industries upon request.",
-    },
-    "nda": {
-        "standard": "C365 executes mutual NDAs with all clients before any discovery or scoping work. "
-                    "Our standard NDA covers a 3-year confidentiality period.",
-        "custom": "We accept client-provided NDAs. Legal review turnaround is 3-5 business days.",
+        "security": "All member data is encrypted in transit (TLS 1.2+) and at rest (AES-256). "
+                    "Building access is secured with key card entry and 24/7 security cameras.",
+        "wifi_security": "Enterprise-grade WiFi with WPA3 encryption. Each member gets unique "
+                         "login credentials. Network is segmented for privacy.",
+        "mail_handling": "Packages and mail are received at the front desk, logged, and members are "
+                         "notified via email. Items are held for up to 14 days before return to sender.",
     },
 }
 
@@ -165,143 +126,125 @@ POLICIES = {
 
 SLA = {
     "response_times": {
-        "critical": "1 hour (production system down, data loss, security breach)",
-        "high": "4 hours (major feature broken, significant workflow disruption)",
-        "normal": "1 business day (minor issues, questions, enhancement requests)",
-        "low": "3 business days (cosmetic issues, documentation, nice-to-haves)",
+        "critical": "1 hour (facility emergency, safety issue, security breach)",
+        "high": "4 hours (HVAC failure, WiFi outage, access issue)",
+        "normal": "1 business day (booking questions, billing inquiries, general requests)",
+        "low": "3 business days (suggestions, feedback, non-urgent requests)",
     },
     "escalation_triggers": [
-        "Production ERP system down or inaccessible",
-        "Data integrity issue affecting orders, inventory, or financials",
+        "Facility emergency (fire, flood, electrical, safety hazard)",
+        "Building access system failure",
         "Security incident or suspected breach",
-        "Client executive escalation",
+        "Member executive escalation",
         "SLA response time missed",
         "Second repeat issue on same root cause",
-        "Billing dispute over $2,000",
-        "Integration failure causing order processing stoppage",
+        "Billing dispute over $500",
+        "WiFi or IT infrastructure outage affecting multiple members",
         "Legal language or termination threat in communication",
     ],
-    "escalation_contact": "andrew@conveyance365.com (Andrew Gianelli, CEO)",
+    "escalation_contact": "management@luxorworkspaces.com (Luxor Workspaces Management)",
 }
 
 # ── FAQ ───────────────────────────────────────────────────────────────────────
 
 FAQ = [
     {
-        "q": "What ERP systems do you support?",
-        "a": "Our primary expertise is Epicor Prophet 21 (P21) and NetSuite. We also work with "
-             "Sage, Infor, and other mid-market ERP platforms. If you are on a system we have not "
-             "listed, reach out and we will let you know if we can help.",
+        "q": "What types of workspace plans do you offer?",
+        "a": "We offer hot desks ($299/month), dedicated desks ($499/month), private offices "
+             "($850-$5,000+/month based on size), virtual offices ($99/month), and conference room "
+             "rentals. All plans include WiFi, printing, and access to common areas.",
     },
     {
-        "q": "How does the ERP Health Check work?",
-        "a": "We connect to your environment, review your configuration, data quality, workflows, "
-             "and integrations over 2-3 weeks. You receive a detailed report with a prioritized "
-             "roadmap and ROI estimates. The $5,000 flat fee covers everything. No surprises.",
+        "q": "Can I tour the space before signing up?",
+        "a": "Absolutely! We offer free tours Monday through Friday during business hours. You can "
+             "book a tour through our website at luxorworkspaces.com or just walk in and ask at the "
+             "front desk. We also offer a free day pass so you can try the space before committing.",
     },
     {
-        "q": "What are AI agents and how do they work with my ERP?",
-        "a": "AI agents are purpose-built automations that sit on top of your ERP and handle "
-             "repetitive tasks. For example, a Customer Service Agent can answer order status "
-             "questions, a PO Processing Agent can read and enter purchase orders, and an Inventory "
-             "Alert Agent can flag stock issues before they become problems. They connect to your "
-             "ERP through secure APIs and follow your business rules.",
+        "q": "How do I book a conference room?",
+        "a": "Log into your member portal at members.luxorworkspaces.com, navigate to Conference Rooms, "
+             "and select your preferred room, date, and time. You can also set up recurring bookings. "
+             "Conference room hours are included in your plan, with overage billed at member rates.",
     },
     {
-        "q": "How long does it take to deploy an AI agent?",
-        "a": "A standard single-agent deployment takes 3-6 weeks from signed SOW to production. "
-             "This includes discovery, configuration, integration, testing, and go-live. More complex "
-             "multi-agent deployments may take 8-12 weeks.",
+        "q": "What are the access hours?",
+        "a": "Hot desk members have access during business hours (7 AM - 9 PM, Monday-Friday). "
+             "Dedicated desk and private office members have 24/7 key card access. The front desk "
+             "is staffed Monday-Friday 8 AM - 6 PM.",
     },
     {
-        "q": "Is my data safe with C365?",
-        "a": "Yes. All data is encrypted in transit and at rest. We access client systems only through "
-             "approved, audited channels. We sign NDAs before any engagement and support SOC 2 and "
-             "BAA requirements for regulated industries. Your data is never used to train models or "
-             "shared with third parties.",
+        "q": "Is the WiFi secure and reliable?",
+        "a": "Yes. We provide enterprise-grade WiFi with WPA3 encryption. Each member gets unique "
+             "login credentials on a segmented network for privacy. Our infrastructure includes "
+             "redundant connections and is monitored 24/7.",
     },
     {
-        "q": "What does the onboarding process look like?",
-        "a": "After signing the SOW, we schedule a kickoff call with your team to align on goals, "
-             "timelines, and access requirements. We then set up secure connectivity to your environment, "
-             "conduct discovery, and begin execution. You will have a dedicated account manager and "
-             "regular status updates throughout.",
+        "q": "How does mail and package handling work?",
+        "a": "All mail and packages are received at the front desk, logged in our system, and you "
+             "receive an email notification. Dedicated desk and private office members get a suite "
+             "number for their business address. Items are held for up to 14 days.",
     },
     {
-        "q": "Can you integrate our ERP with our eCommerce platform?",
-        "a": "Absolutely. We have built integrations with Shopify, BigCommerce, Magento, and custom "
-             "eCommerce platforms. We handle product sync, order flow, inventory updates, pricing, "
-             "and customer data mapping. Typical eCommerce-to-ERP integrations take 4-8 weeks.",
+        "q": "Can I bring guests to the workspace?",
+        "a": "Yes! Members may bring up to 2 guests per day at no charge. Additional guests are "
+             "$15/day each. All guests must check in at reception and follow our community guidelines.",
     },
     {
-        "q": "How does pricing work for the AI Agent Suite?",
-        "a": "The AI Agent Suite is a monthly subscription ranging from $2,500 to $15,000 per month "
-             "depending on the number of agents and complexity. There is a one-time setup fee "
-             "(typically $5,000 to $25,000) for initial configuration and integration. We scope "
-             "everything upfront so you know the cost before committing.",
+        "q": "What is included in a private office?",
+        "a": "Private offices come fully furnished with desks, chairs, and storage. They include "
+             "24/7 access, dedicated climate control, 10 hours of conference room time per month, "
+             "mail handling with a suite number, a phone line, and door signage.",
     },
     {
-        "q": "Do you offer ongoing support after a project is complete?",
-        "a": "Yes. We offer Support Retainer plans at 10, 20, or 40 hours per month. Retainer clients "
-             "get priority response times, a dedicated account manager, and quarterly business reviews. "
-             "Unused hours roll over up to 25%.",
+        "q": "How do I report a facilities issue?",
+        "a": "You can report issues through the member portal, by emailing support@luxorworkspaces.com, "
+             "or by visiting the front desk. Emergency facilities issues (HVAC, plumbing, electrical) "
+             "are handled within 1 hour. Non-emergency requests within 24 hours.",
     },
     {
-        "q": "What if the project scope changes mid-engagement?",
-        "a": "Scope changes are handled through a formal Change Order process. We document the additional "
-             "scope, timeline impact, and cost, and both parties sign before any new work begins. "
-             "This protects you from scope creep and ensures transparency.",
+        "q": "What is your cancellation policy?",
+        "a": "Month-to-month memberships require 30 days written notice to cancel. Annual memberships "
+             "require 60 days notice. There are no early termination fees for month-to-month plans. "
+             "Pro-rated refunds are provided for any prepaid unused period.",
     },
     {
-        "q": "Do you work with companies outside manufacturing and distribution?",
-        "a": "Our sweet spot is mid-market manufacturers and distributors, but we have also served "
-             "clients in industrial services, building materials, food and beverage distribution, "
-             "and specialty chemicals. If your business runs on an ERP, we can likely help.",
+        "q": "Do you offer discounts for multiple desks or long-term commitments?",
+        "a": "Yes. We offer a Growth Tier discount when adding multiple desks and a 10% discount on "
+             "annual commitments. We also have a Loyalty Upgrade Incentive for existing members who "
+             "upgrade their plan. Contact us for a custom quote for teams of 5+.",
     },
     {
         "q": "How do I get started?",
-        "a": "Email sales@conveyance365.com or reach out to your contact at C365. We will schedule "
-             "a 30-minute discovery call to understand your needs, then provide a scoping proposal "
-             "within one week. No commitment required to have the conversation.",
-    },
-    {
-        "q": "Who owns the deliverables at the end of a project?",
-        "a": "All custom code, reports, and configurations built specifically for you become your "
-             "intellectual property upon final payment. AI Agent subscriptions are licensed services. "
-             "Your data is always yours, no matter what.",
-    },
-    {
-        "q": "What is your cancellation policy for retainers?",
-        "a": "Retainer agreements require 30 days written notice to cancel. There are no early "
-             "termination fees. Any prepaid unused hours for the final month are refunded.",
+        "a": "Visit our website at luxorworkspaces.com to book a tour, or email info@luxorworkspaces.com. "
+             "You can also walk into any of our locations during business hours. We will help you find "
+             "the right plan and can have you set up the same day.",
     },
 ]
 
 # ── Contact Directory ─────────────────────────────────────────────────────────
 
 CONTACTS = {
-    "support": "support@conveyance365.com",
-    "sales": "sales@conveyance365.com",
-    "billing": "billing@conveyance365.com",
-    "ceo": "andrew@conveyance365.com (Andrew Gianelli)",
-    "cto": "peter.wilson@conveyance365.com (Peter Wilson)",
-    "escalation": "andrew@conveyance365.com",
+    "support": "support@luxorworkspaces.com",
+    "sales": "info@luxorworkspaces.com",
+    "billing": "billing@luxorworkspaces.com",
+    "management": "management@luxorworkspaces.com",
+    "escalation": "management@luxorworkspaces.com",
 }
 
 # ── Brand Voice Guidelines ────────────────────────────────────────────────────
 
 BRAND_VOICE = """
-Conveyance365 brand voice:
-- Professional and knowledgeable. We speak ERP fluently.
+Luxor Workspaces brand voice:
+- Professional, warm, and community-oriented. We create spaces where great work happens.
 - Solutions-focused. Every response moves the conversation toward a clear next step.
-- Direct and honest. We do not oversell. We show results and let the work speak.
-- Concise. Our clients are busy operators. Respect their time.
-- Empathetic to operational pain. We understand what a broken integration or bad data costs.
-- First-person plural ("we", "our team") represents the C365 team.
-- Sign off: "The Conveyance365 Team" for general CS, or agent first name for account-level interactions.
-- Never promise timelines or outcomes we cannot deliver. Use "Let me review this with our team and follow up" over guessing.
-- No jargon for the sake of jargon. Explain technical concepts in business terms when speaking with non-technical stakeholders.
-- Confident but not arrogant. We are experts, not lecturers.
+- Direct and helpful. We make workspace simple and stress-free.
+- Concise. Our members are busy professionals. Respect their time.
+- Empathetic to workspace frustrations. We understand what a broken printer or noisy neighbor costs in productivity.
+- First-person plural ("we", "our team") represents the Luxor Workspaces team.
+- Sign off: "The Luxor Workspaces Team" for general CS, or agent first name for account-level interactions.
+- Never promise timelines or outcomes we cannot deliver. Use "Let me check with our facilities team and follow up" over guessing.
+- Welcoming to new members and appreciative of loyal ones.
+- Confident but not corporate. We are hospitality professionals, not bureaucrats.
 """
 
 # ── Utility: Build context string for AI prompts ──────────────────────────────

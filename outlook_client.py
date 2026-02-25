@@ -1,5 +1,5 @@
 """
-outlook_client.py — Microsoft Graph API wrapper for C365 Outlook/Exchange email.
+outlook_client.py — Microsoft Graph API wrapper for Luxor Workspaces Outlook/Exchange email.
 
 Uses MSAL (Microsoft Authentication Library) with client credentials flow
 (app-only auth, no user sign-in required). Requires:
@@ -142,7 +142,7 @@ def _demo_emails() -> list[InboundEmail]:
             sender_email="kdraper@greatlakesind.com",
             body_text=(
                 "Hi Support,\n\n"
-                "We need three new users provisioned in the C365 portal:\n\n"
+                "We need three new users provisioned in the Luxor Workspaces portal:\n\n"
                 "  1. Sarah Mitchell — sarah.m@greatlakesind.com — Warehouse role\n"
                 "  2. Tom Alvarez — tom.a@greatlakesind.com — Purchasing role\n"
                 "  3. Diana Reyes — diana.r@greatlakesind.com — Admin role\n\n"

@@ -2,7 +2,7 @@
 server.py — Luxor Workspaces CS Agent: FastAPI main application.
 
 Routes:
-  GET  /                     → API info
+  GET  /                     → Redirect to /demo
   GET  /health               → Health check (services connectivity)
   GET  /demo                 → Interactive demo dashboard (HTML)
   GET  /api/demo             → Demo data as JSON (mock or live AI)
@@ -32,7 +32,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 import ai_engine
@@ -89,15 +89,9 @@ app.add_middleware(
 # ── Root ──────────────────────────────────────────────────────────────────────
 
 @app.get("/", tags=["Info"])
-def root() -> dict[str, Any]:
-    return {
-        "name": settings.app_name,
-        "version": settings.app_version,
-        "environment": settings.environment,
-        "docs": "/docs",
-        "demo": "/demo",
-        "health": "/health",
-    }
+def root():
+    """Redirect root to the interactive demo dashboard."""
+    return RedirectResponse("/demo")
 
 
 # ── Health Check ──────────────────────────────────────────────────────────────
